@@ -168,9 +168,12 @@ In this setup DMS is not intended to receive email from the outside world, so no
 
         Then don't forget to change the `SOA` serial number, and to restart the service.
 
-3. [Generate DKIM keys][docs-dkim] for your domain via `setup config dkim`.
-
-    Copy the content of the file `docker-data/dms/config/opendkim/keys/example.com/mail.txt` and add it to your DNS records as a TXT like SPF was handled above.
+3. [Generate DKIM keys][docs-dkim] for your domain.
+    First, you need to add an account first before you can generate dkim keys
+    ``` 
+    setup email add admin@example.com passwd123
+    ```
+    Then, you can run `setup config dkim` Copy the content of the file `docker-data/dms/config/opendkim/keys/example.com/mail.txt` and add it to your DNS records as a TXT like SPF was handled above.
 
     I use [bind9](https://github.com/docker-scripts/bind9) for managing my domains, so I just paste it on `example.com.db`:
 
